@@ -21,7 +21,8 @@ from user.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home,name='home'),
-    path('',about,name='about'),
-    path('',contact,name='contact'),
-    path('',services,name='services'),
+    path('about/',about_view,name='about'),
+    path('contact/',contact_view,name='contact'),
+    path('services/',services_view,name='services'),
+    path('complaint/',complaint_view,name='complaint')
 ]

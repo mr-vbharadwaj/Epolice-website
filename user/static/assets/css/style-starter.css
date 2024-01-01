@@ -3152,15 +3152,15 @@ fieldset:disabled .btn {
 
 .btn-primary:hover {
     color: #fff;
-    background-color: #f17404;
-    border-color: #f17404;
+    background-color: #00abf0;
+    border-color: #00abf0;
 }
 
 .btn-check:focus + .btn-primary,
 .btn-primary:focus {
     color: #fff;
-    background-color: #f17404;
-    border-color: #f17404;
+    background-color: #00abf0;
+    border-color: #00abf0;
     box-shadow: 0 0 0 0.25rem rgb(255 152 0 / 40%);
 }
 
@@ -3170,8 +3170,8 @@ fieldset:disabled .btn {
 .btn-primary:active,
 .show > .btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: #f17404;
-    border-color: #f17404;
+    background-color: #00abf0;
+    border-color: #00abf0;
 }
 
 .btn-check:active + .btn-primary:focus,
@@ -3185,8 +3185,8 @@ fieldset:disabled .btn {
 .btn-primary.disabled,
 .btn-primary:disabled {
     color: #fff;
-    background-color: #f17404;
-    border-color: #f17404;
+    background-color: #00abf0;
+    border-color: #00abf0;
 }
 
 .btn-secondary {
@@ -17866,7 +17866,7 @@ fieldset:disabled .btn {
 }
 
 :root {
-    --primary-color: #ff7800;
+    --primary-color: #00abf0;
     --font-color: #58595b;
     --bg-color: #fff;
     --heading-color: #000000;
@@ -17885,23 +17885,7 @@ fieldset:disabled .btn {
     --footer-bglight: #222;
 }
 
-[data-theme="dark"] {
-    --primary-color: #ff7800;
-    --font-color: #c2c2c2;
-    --bg-color: #0b0d0e;
-    --heading-color: #eee;
-    --border-color: rgba(255, 255, 255, 0.2);
-    --border-color-light: rgba(255, 255, 255, 0.1);
-    --nav-color: #fff;
-    --dropdown-color: #222;
-    --iframe-filter: grayscale(100%);
-    --bg-grey: #222;
-    --bg-lightgrey: #131617;
-    --layer: rgb(0 0 0 / 65%);
-    --layer1: rgb(0 0 0 / 75%);
-    --footer-bg: #000;
-    --footer-bglight: #111;
-}
+
 
 .noscroll {
     overflow: hidden;
@@ -18228,10 +18212,15 @@ a.read:hover span.fas {
 
 /*-- //toggle switch --*/
 /*-- dark and light mode styling --*/
-.mode-container {
-    width: 24px;
-    height: 24px;
+.login {
+    width: 45px;
+    height: 45px;
     padding: 1px 0;
+    cursor: pointer;
+    
+    background-image: url(../images/user.png);
+    background-size: cover;
+    
 }
 
 .gg-sun {
@@ -18244,86 +18233,12 @@ a.read:hover span.fas {
     border: 6px solid transparent;
 }
 
-.gg-moon {
-    overflow: hidden;
-    position: relative;
-    transform: rotate(-135deg) scale(var(--ggs, 1));
-    width: 20px;
-    height: 20px;
-    border: 2px solid;
-    border-bottom: 2px solid transparent;
-}
 
-.gg-moon,
-.gg-moon:after {
-    display: block;
-    box-sizing: border-box;
-    border-radius: 50%;
-    color: #fff;
-}
 
-.nav-fixed .gg-moon,
-.nav-fixed .gg-moon:after {
-    display: block;
-    box-sizing: border-box;
-    border-radius: 50%;
-    color: #fff;
-}
 
-.gg-moon:after {
-    content: "";
-    position: absolute;
-    width: 12px;
-    height: 18px;
-    border: 2px solid transparent;
-    box-shadow: 0 0 0 2px;
-    top: 8px;
-    left: 2px;
-}
 
-.gg-sun,
-.gg-sun:after,
-.gg-sun:before {
-    box-sizing: border-box;
-    display: block;
-    width: 24px;
-    color: #eee;
-}
 
-.gg-sun:after,
-.gg-sun:before {
-    content: "";
-    position: absolute;
-    height: 2px;
-    border-right: 4px solid;
-    border-left: 4px solid;
-    left: -6px;
-    top: 5px;
-}
 
-.gg-sun:before {
-    transform: rotate(-45deg);
-}
-
-.gg-sun:after {
-    transform: rotate(45deg);
-}
-
-.mode-container i.gg-sun {
-    display: none;
-}
-
-.mode-container i.gg-moon {
-    display: block;
-}
-
-input:checked + .mode-container i.gg-sun {
-    display: block;
-}
-
-input:checked + .mode-container i.gg-moon {
-    display: none;
-}
 
 /*--//Light-and-Drak-Mode--*/
 /*---/Header-Style--*/
@@ -18630,10 +18545,6 @@ form.search-box {
     color: var(--primary-color);
 }
 
-.nav-fixed .gg-moon,
-.nav-fixed .gg-moon:after {
-    color: var(--nav-color);
-}
 
 .nav-fixed li.nav-item.search-right a {
     color: var(--nav-color);
@@ -18824,12 +18735,12 @@ form.search-box {
 }
 
 .w3l-main-slider .banner-view {
-    background: url(../images/banner1.jpg) no-repeat center;
+    background: url(../images/Banner.jpg) no-repeat center;
     -ms-background-size: cover;
     background-size: cover;
-    z-index: 0;
     position: relative;
     display: grid;
+    z-index: 0;
     align-items: center;
     min-height: 740px;
     background-size: cover;
