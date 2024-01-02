@@ -21,5 +21,10 @@ from Epolice_django.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home,name='home'),
-    path('complain/',complain,name='complain'),
+    path('complain/',complaint,name='complaint'),
+    path('login/',login,name='login'),
+    path('about/',about,name='about'),
+    path('services/',services,name='services'),
+    path('contact/',contact,name='contact'),
+    path('logout/',logout,name='logout'),
 ]

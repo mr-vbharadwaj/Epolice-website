@@ -62,11 +62,6 @@
                 required="">
             </form>
           </div>
-          <ul class="header-search me-lg-4">
-            <li class="nav-item search-right">
-              <a href="#open" class="btn search-btn btn-primary" title="search" id="loginBtn"> LogIN</a>
-            </li>
-          </ul>
         </div>
         <!-- toggle switch for light and dark theme -->
         <div class="mobile-position">
@@ -87,29 +82,3 @@
     </div>
   </header>
   <!--/header-->
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Get the login button element
-      var loginButton = document.getElementById('loginBtn');
-    
-      // Get the login popup element
-      var loginPopup = document.getElementById('search');
-    
-      // Function to show the login popup
-      function showLoginPopup() {
-        loginPopup.style.display = 'block';
-      }
-    
-      // Function to hide the login popup
-      function hideLoginPopup() {
-        loginPopup.style.display = 'none';
-      }
-    
-      // Attach click event to the login button
-      loginButton.addEventListener('click', showLoginPopup);
-    
-      // Attach click event to the close button inside the popup
-      loginPopup.querySelector('.close').addEventListener('click', hideLoginPopup);
-    });
-    </script>
