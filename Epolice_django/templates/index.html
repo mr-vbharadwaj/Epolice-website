@@ -1,94 +1,28 @@
 {% load static %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>P O L I C E </title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Karnataka Police</title>
     <!--/google-fonts -->
-    <link href="//fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link
+      href="//fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap"
+      rel="stylesheet" />
     <!--//google-fonts -->
     <!--/Template-CSS -->
-    <link rel="stylesheet" href="{% static 'assets/css/style-starter.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style-starter.css' %}" />
     <!--//Template-CSS -->
-</head>
-
-<body>
-    <!--/Header-->
-    <header id="site-header" class="fixed-top">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light stroke py-lg-0">
-                <h1><a class="navbar-brand" href="{% url 'home' %}">
-                        <span class="w3yellow">Karnataka</span> Police
-                    </a></h1>
-                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
-                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarScroll">
-                    <ul class="navbar-nav mx-lg-auto my-2 my-lg-0 navbar-nav-scroll">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'about' %}">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'services' %}">Services</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-                        </li>
-
-                    </ul>
-                    <!--/search-right-->
-                    <ul class="header-search me-lg-4">
-                        <li class="nav-item search-right">
-                            <a href="{% url 'logout' %}" class="btn search-btn btn-primary" title="search">LogOut</a>
-                            <!-- search popup -->
-                            <div id="search" class="pop-overlay">
-                                <div class="popup">
-                                    <h3 class="title-w3l two mb-4 text-left">LogIN</h3>
-                                    <form action="#" method="GET" class="search-box d-flex position-relative">
-                                        <input type="search" placeholder="Enter your Aadhar No." name="search" required="required" autofocus="">
-                                    </form><br>
-                                    <form action="#" method="GET" class="search-box d-flex position-relative">
-                                        <input type="search" placeholder="Enter OTP" name="search" required="required" autofocus="">
-                                           </form>
-                                           <a href="#" class="btn btn-style btn-primary mt-4">LogIN</a>
-                                </div>
-                                <a class="close" href="#close">×</a>
-                            </div>
-                            <!-- /search popup -->
-                        </li>
-                    </ul>
-                    <!--//search-right-->
-                </div>
-                <!-- toggle switch for light and dark theme -->
-                <div class="mobile-position">
-                    <nav class="navigation">
-                        <div class="theme-switch-wrapper">
-                            <label class="theme-switch" for="checkbox">
-                                <input type="checkbox" id="checkbox">
-                                <div class="login">
-
-                                </div>
-                            </label>
-                        </div>
-                    </nav>
-                </div>
-                <!-- //toggle switch for light and dark theme -->
-
-            </nav>
-        </div>
-    </header>
-    <!--//Header-->
-    <!--/Banner-Start-->
+  </head>
+  <body>
+       {% include 'header.html' %}
+  <!--/Banner-Start-->
     <!-- main-slider -->
     <section class="w3l-main-slider banner-slider " id="home">
+        <center>{{msg}}</center>
         <div class="owl-one owl-carousel owl-theme">
                 <div class="slider-info banner-view banner-top1">
                     <div class="container">
@@ -111,7 +45,5 @@
     <!-- Template JavaScript -->
     <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'assets/js/theme-change.js' %}"></script>
-
-</body>
-
+</body> 
 </html>
