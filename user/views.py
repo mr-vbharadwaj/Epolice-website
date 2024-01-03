@@ -11,3 +11,5 @@ def contact_view(request):
     return render(request, 'contact.html')
 def services_view(request):
     return render(request, 'services.html')
+def status_view(request):
+    return render(request, 'status.html')
