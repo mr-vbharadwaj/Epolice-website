@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
-from Epolice_django.models import Citizen
+from django.http import HttpResponseBadRequest
+from django.conf import settings
+from django.core.mail import send_mail
+from Epolice_django.models import Citizen, Complaints
 from random import randint
 # Create your views here.
 
@@ -7,18 +10,26 @@ def citizen_login(request):
     if request.method == 'GET':
         return render(request, 'login.html')
     else:
-        # try:
+        try:
             session_user = Citizen.objects.get(email = request.POST['email'])
             if request.POST['password'] == session_user.password:
                 request.session['email'] = session_user.email
-                return render(request, 'index.html', {'session_user':session_user})
+                return redirect('home')
             else:
                 return render(request, 'login.html', {'msg':'Invalid Password!!'})
-            
-        # except:
-        #     return render(request, 'login.html', {'msg':'Email is not registered, please signup!!'})
-        
-        
+        except:
+            return render(request, 'login.html', {'msg':'Email does not exist, please register'})
+                    
+
+# def login_done(func):
+#     def func(request):
+#         if 'email' in request.session:
+#             session_user = Citizen.objects.get(email = request.session['email'])
+#             return func(request, {'session_user':session_user})
+#         else:
+#             return func(request)
+#     return func
+
 
 def login_required(fun):
     def func(request):
@@ -28,27 +39,43 @@ def login_required(fun):
             return fun(request)
     return func
 
-
 def home(request):
-    return render(request, 'index.html')
+    if 'email' in request.session:
+        session_user = Citizen.objects.get(email = request.session['email'])
+        return render(request, 'index.html', {'session_user':session_user})
+    else:
+        return render(request, 'index.html')
+        
 
 @login_required
 def complaint(request):
     if request.method == 'GET':
         return render(request, 'complaint.html')
     
-# @login_required
+@login_required
 def about(request):
-    return render(request, 'about.html')
-
-# @login_required
+    if 'email' in request.session:
+        session_user = Citizen.objects.get(email = request.session['email'])
+        return render(request, 'about.html', {'session_user':session_user})
+    else:
+        return render(request, 'about.html')
+    
+@login_required
 def services(request):
-    return render(request, 'services.html')
+    if 'email' in request.session:
+        session_user = Citizen.objects.get(email = request.session['email'])
+        return render(request, 'services.html', {'session_user':session_user})
+    else:
+        return render(request, 'services.html')
 
-# @login_required
+@login_required
 def contact(request):
-    return render(request, 'contact.html')
-
+    if 'email' in request.session:
+        session_user = Citizen.objects.get(email = request.session['email'])
+        return render(request, 'contact.html', {'session_user':session_user})
+    else:
+        return render(request, 'contact.html')
+    
 def citizen_logout(request):
     try:
         del request.session['email']
@@ -56,14 +83,38 @@ def citizen_logout(request):
     except:
         return redirect('home')
 
-# @login_required
+@login_required
 def status(request):
-    return render(request, 'status.html')
+    # try:
+        session_user = Citizen.objects.get(email = request.session['email'])
+        if 'email' in request.session:
+            complaints_data = Complaints.objects.get(user_email = session_user)
+            return render(request, 'status.html', {'session_user':session_user,'complaints':complaints_data})
+        else:
+            session_user = Citizen.objects.get(email = request.session['email'])
+            return render(request, 'status.html', {'session_user':session_user})
+    # except:
+    #     return render(request, 'status.html', {'session_user':session_user})
 
 @login_required
 def submit_complaint(request):
-    return render(request, 'complaint.html', {'msg':'Complaint submitted successfully'})
-
+    if request.method == 'GET':
+        return render(request, 'complaint.html', {'msg':'Complaint submitted successfully'})
+    else:
+        try:
+            session_user = Citizen.objects.get(email = request.session['email'])
+            Complaints.objects.create(
+                citizen_name = request.POST['full_name'],
+                citizen_email = request.POST['email'],
+                user_email = session_user,
+                subject = request.POST['subject'],
+                description = request.POST['complaintDetails'],
+                time_of_incident = request.POST['date'],
+                status = 'registered'
+                )
+            return render(request, 'complaint.html', {'msg':'Complaint submitted successfully!!!'})
+        except:
+            return render(request, 'complaint.html',{'msg':'Something went wrong, please try again!!'})
 
 def citizen_register(request):
     if request.method == 'GET':
@@ -86,3 +137,35 @@ def citizen_register(request):
                     'address' : request.POST['address'],
                     'aadhaar_card_no' : request.POST['aadhaar_card_no']
                 }
+                subject = 'Epolice registration'
+                message = f"Hello {citizen_data['full_name']}, your otp to register on our site is {otp}"
+                sender = settings.EMAIL_HOST_USER
+                reciever = [request.POST['email']]
+                send_mail(subject, message, sender, reciever)
+                return render(request, 'otp.html')
+            else:
+                return render(request, 'register.html', {'msg':"Both passwords don't match"})
+
+@login_required            
+def citizen_otp(request):
+    if str(otp) == request.POST['otp']:
+        Citizen.objects.create(
+            full_name = citizen_data['full_name'],
+            email = citizen_data['email'],
+            password = citizen_data['password'],
+            mobile = citizen_data['mobile'],
+            address = citizen_data['address'],
+            aadhaar_card_no = citizen_data['aadhaar_card_no']
+        )
+        return render(request, 'register.html', {'msg':'Account created successfully!!'})
+    else:
+        return render(request, 'register.html', {'msg':'Entered otp is invalid'})
+    
+@login_required
+def view_form(request):
+    try:
+        session_user = Citizen.objects.get(email = request.session['email'])
+        complaints_data = Complaints.objects.filter(user_email = session_user)
+        return render(request, 'preview.html', {'complaints':complaints_data})
+    except:
+        return HttpResponseBadRequest()

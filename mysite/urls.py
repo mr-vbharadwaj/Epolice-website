@@ -30,4 +30,6 @@ urlpatterns = [
     path('status/',status,name='status'),
     path('register/',citizen_register,name='register'),
     path('submit_complaint/',submit_complaint,name='submit_complaint'),
+    path('citizen_otp/',citizen_otp, name='otp'),
+    path('view_form/',view_form, name='view_form'),
 ]

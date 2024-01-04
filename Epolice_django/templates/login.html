@@ -13,7 +13,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
   </head>
-<body style="background-image: url(../static/assets/images/police.png); background-repeat:no-repeat; background-size:cover">
+<body style="background-image: url(../static/assets/images/police2.jpg); background-repeat:no-repeat; background-size:cover;">
   <center>
     <div class="card card-info" style="margin-top: 50px; max-width: 1000px;">
       
@@ -41,6 +41,9 @@
           </div>
           <!-- /.card-body -->
           <div class="card-footer">
+            <a href="{% url 'home' %}">
+              <span class="btn btn-default float-left" aria-hidden="true">Go back</span>
+            </a>
             <a href="{% url 'login' %}">
               <button class="btn btn-info" aria-hidden="true">Sign in</button>
             </a>

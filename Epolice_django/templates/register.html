@@ -13,7 +13,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
   </head>
-<body style="background-image: url(../static/assets/images/police.png);">
+<body style="background-image: url(../static/assets/images/police2.jpg); background-repeat: no-repeat; background-size: cover">
   <center>
     <div class="card card-info" style="margin-top: 50px; max-width: 1000px;">
       
@@ -22,7 +22,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" action="{% url 'login' %}" method="post">
+        <form class="form-horizontal" action="{% url 'register' %}" method="post">
           {% csrf_token %}
           {{msg}}
           <div class="card-body">
@@ -71,7 +71,7 @@
           </div>
           <!-- /.card-body -->
           <div class="card-footer">
-            <a href="{% url 'home' %}">
+            <a href="{% url 'register' %}">
               <span></span><button type="submit" class="btn btn-info">Register</button>
             </a>
             <br><br>
