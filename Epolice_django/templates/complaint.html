@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-image: url(../static/assets/images/police2.jpg);
+      background-image: url(../../static/assets/images/police2.jpg);
       background-size: cover;
       background-repeat: no-repeat;
       background-color: #f4f4f4;
@@ -68,7 +68,7 @@
 </head>
 <body >
   <div >
-    <form action="{% url 'submit_complaint' %}" method="post" >
+    <form action="{% url 'citizen:submit_complaint' %}" method="post" >
       {% csrf_token %}
       <center>{{msg}}</center>
       <h2>Police Complaint Form</h2>
@@ -94,7 +94,7 @@
       <textarea id="complaintDetails" name="complaintDetails" required></textarea>
       
       <div style="display: flex; justify-content:space-between">
-        <a href="{% url 'home' %}"><button type="button">Go back</button></a>
+        <a href="{% url 'citizen:home' %}"><button type="button">Go back</button></a>
         <button class="btn btn-default float-right" type="submit" aria-hidden="true">Submit Complaint</button>
       </div>
     </form>

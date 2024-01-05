@@ -15,56 +15,69 @@
     <!--//google-fonts -->
     <!--/Template-CSS -->
     <link rel="stylesheet" href="{% static 'assets/css/style-starter.css' %}" />
-    <!--//Template-CSS -->
+    <style>
+      /* Add this style block to your HTML or link to an external CSS file */
+      table {
+        border: 1px solid white;
+        width: 100%;
+        color: white;
+      }
+    
+      th, td {
+        border: 1px solid white; /* Adjust the border color and style as needed */
+        padding: 8px; /* Add padding for better aesthetics */
+        text-align: left;
+      }
+    </style>
   </head>
   <body>
-       {% include 'header.html' %}
-  <!--/Banner-Start-->
-    <!-- main-slider -->
+    {% include 'header.html' %}
     <center>
-    <section class="w3l-main-slider banner-slider " id="home">
+      <section class="w3l-main-slider banner-slider " id="home">
         <center>{{msg}}</center>
         <div class="owl-one owl-carousel owl-theme">
-                <div class="slider-info banner-view banner-top1">
-                    <div class="container">
-                        <div class="w3banner-grids">
-                          {% if complaints %}
-                            <table class="table table-head-fixed" style="color:white">
-                                <thead>
-                                  <tr>
-                                    <th>Complaint ID</th>
-                                    <th>Complainer Name</th>
-                                    <th>Date</th>
-                                    <th>Subject</th>
-                                    <th>Description</th>
-                                    <th>Status</th>
-                                    <th>View</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <td>{{complaints.id}}</td>
-                                    <td>{{complaints.citizen_name}}</td>
-                                    <td>{{complaints.time_of_complaint}}</td>
-                                    <td>{{complaints.subject}}</td>
-                                    <td>{{complaints.description}} </td>
-                                    <td>{{complaints.status}}</td>
-                                    <td><a href="{% url 'view_form' %}"><button><i class="fa-solid fa-eye" alt="view form"></i></button></a></td>
-                                  </tr>
-                                </tbody>
-                          {% else %}
-                          <p style="color: white;">There are no complaints filed from your account
-                            <br>
-                            Go to home paeg to submit your complaint
-                          </p>
-                          {% endif %}
-                        </div>
-                    </div>
-                </div>
+          <div class="slider-info banner-view banner-top1">
+            <div class="container">
+              <div class="w3banner-grids">
+                {% if complaints %}
+                <table class="table table-head-fixed" style="color:white">
+                    <thead>
+                      <tr>
+                        <th>Complaint ID</th>
+                        <th>Complainer Name</th>
+                        <th>Date</th>
+                        <th>Subject</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>View</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in complaints %}
+                      <tr>
+                        <td>{{i.id}}</td>
+                        <td>{{i.citizen_name}}</td>
+                        <td>{{i.time_of_complaint}}</td>
+                        <td>{{i.subject}}</td>
+                        <td>{{i.description}} </td>
+                        <td>{{i.status}}</td>
+                        <td><a href="{% url 'citizen:view_form' i.id %}"><button><i class="fas fa-eye" alt="view form"></i></button></a></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+              {% else %}
+              <p style="color: white;">There are no complaints filed from your account
+                <br>
+                Go to home page to submit your complaint
+              </p>
+              {% endif %}
+                </table>
+              </div>
+              <center><a href="{% url 'citizen:home' %}" class="btn search-btn btn-primary" style="position: relative; max-width: 80px;"><span aria-hidden="true" >Go back</span></a></center>
+            </div>
         </div>
-
-    </section>
-</center>
+      </section>
+    </center>
 
     
     <!-- //move top -->

@@ -22,23 +22,23 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" action="{% url 'otp' %}" method="post">
+        <form class="form-horizontal" action="{% url 'citizen:otp' %}" method="post">
           {% csrf_token %}
           {{msg}}
           <div class="card-body">
             <div class="form-group row">
-              <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+              <label for="inputPassword3" class="col-sm-2 col-form-label">Enter the OTP</label>
               <div class="col-sm-10">
-                <input name="otp" type="password" class="form-control" id="otp" placeholder="Password" required>
+                <input name="otp" type="password" class="form-control" id="otp" placeholder="OTP" required>
               </div>
             </div>
           </div>
           <!-- /.card-body -->
           <div class="card-footer">
-            <a href="{% url 'register' %}">
+            <a href="{% url 'citizen:register' %}">
               <span class="btn btn-default float-left" aria-hidden="true">Go back</span>
             </a>
-            <a href="{% url 'otp' %}">
+            <a href="{% url 'citizen:otp' %}">
               <button class="btn btn-info" aria-hidden="true">Verify</button>
             </a>
           </div>

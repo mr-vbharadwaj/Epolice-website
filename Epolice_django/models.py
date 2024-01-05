@@ -18,6 +18,7 @@ class Complaints(models.Model):
     citizen_name = models.CharField(max_length = 255)
     user_email = models.ForeignKey(Citizen, on_delete=models.CASCADE)
     citizen_email = models.EmailField()
+    citizen_aadhaar = models.IntegerField()
     subject = models.CharField(max_length = 255)
     description = models.TextField()
     time_of_incident = models.DateField()

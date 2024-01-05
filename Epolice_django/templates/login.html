@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login Page</title>
+    <title>Citizen Login Page</title>
   
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -13,16 +13,27 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
   </head>
-<body style="background-image: url(../static/assets/images/police2.jpg); background-repeat:no-repeat; background-size:cover;">
+  <style>
+    body {
+      background-image: url(../../static/assets/images/police3.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+      margin-top: 250px;
+    }
+
+  </style>
+  
+<body >
   <center>
     <div class="card card-info" style="margin-top: 50px; max-width: 1000px;">
       
-        <div class="card-header">
-          <h3 class="card-title">Login Form</h3>
+        <div class="card-header" >
+          <h3 class="card-title">Citizen Login Form</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" action="{% url 'login' %}" method="post">
+        <form class="form-horizontal" action="{% url 'citizen:login' %}" method="post">
           {% csrf_token %}
           {{msg}}
           <div class="card-body">
@@ -41,14 +52,17 @@
           </div>
           <!-- /.card-body -->
           <div class="card-footer">
-            <a href="{% url 'home' %}">
+            <a href="{% url 'citizen:home' %}">
               <span class="btn btn-default float-left" aria-hidden="true">Go back</span>
             </a>
-            <a href="{% url 'login' %}">
+            <a href="{% url 'citizen:login' %}">
               <button class="btn btn-info" aria-hidden="true">Sign in</button>
             </a>
-            <a href="{% url 'register' %}">
-              <span class="btn btn-default float-right" aria-hidden="true">Register?</span>
+            <a href="{% url 'citizen:register' %}">
+              <span class="btn btn-info" aria-hidden="true">Register</span>
+            </a>
+            <a href="{% url 'officer:officer_login' %}">
+              <span class="btn btn-default float-right" aria-hidden="true">Officer?</span>
             </a>
           </div>
           <!-- /.card-footer -->

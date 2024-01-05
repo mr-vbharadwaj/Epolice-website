@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-image: url(../static/assets/images/police2.jpg);
+      background-image: url(../../static/assets/images/police2.jpg);
       background-size: cover;
       background-repeat: no-repeat;
       background-color: #f4f4f4;
@@ -68,27 +68,25 @@
 </head>
 <body >
   <div >
-    <form action="{% url 'submit_complaint' %}" method="post" aria-readonly="true">
+    <form action="{% url 'citizen:view_form' complaint.id %}" method="post" aria-readonly="true">
       {% csrf_token %}
       <center>{{msg}}</center>
       <h2>Police Complaint Form</h2>
-      <label for="citizen_name">Your Name: {{complaints.full_name}}</label>
+      <label for="citizen_name">Your Name:<input type="text" value="{{complaint.citizen_name}}" id="full_name" name="full_name" readonly></label>
 
-      <label for="aadhaar_number">Aadhaar Number: {{complaints.full_name}}</label>
+      <label for="aadhaar_number">Aadhaar Number:<input type="text" value="{{complaint.citizen_aadhaar}}" id="aadhaar_number" name="aadhaar_number" readonly></label>
 
-      <label for="contactNumber">Contact Number: {{complaints.full_name}}</label>
+      <label for="email_id">Email:<input type="text" value="{{complaint.citizen_email}}" id="email" name="email" readonly></label>
 
-      <label for="email_id">Email</label>
+      <label for="incidentDate">Incident Date:<input type="text" value="{{complaint.time_of_incident}}" id="date" name="date" readonly></label>
 
-      <label for="incidentDate">Incident Date:</label>
+      <label for="complainantSubject">Subject:<input type="text" value="{{complaint.subject}}" id="subject" name="subject" readonly></label>
 
-      <label for="complainantSubject">Subject: </label>
-
-      <label for="complaintDetails">Complaint Details:</label>
+      <label for="complaintDetails">Complaint Details:<input type="text" value="{{complaint.description}}" id="complaintDetails" name="complaintDetails" readonly></label>
       
       <br><br>
       <div style="display: flex; justify-content:center">
-        <a href="{% url 'status' %}"><button type="button">Go back</button></a>
+        <a href="{% url 'citizen:status' %}"><button type="button">Go back</button></a>
       </div>
     </form>
       

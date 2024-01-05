@@ -24,39 +24,19 @@
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light stroke py-lg-0">
           <h1>
-            <a class="navbar-brand" href="{% url 'home' %}">
+            <a class="navbar-brand" href="{% url 'citizen:home' %}">
               <span class="w3yellow">Karnataka</span> Police
             </a>
           </h1>
-          <button
-            class="navbar-toggler collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarScroll"
-            aria-controls="navbarScroll"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
-            <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-          </button>
           <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav mx-lg-auto my-2 my-lg-0 navbar-nav-scroll">
               <li class="nav-item" style="color: white;">
-                <a class="nav-link" aria-current="page" href="{% url 'home' %}"
+                <a class="nav-link" aria-current="page" href="{% url 'citizen:home' %}"
                   >Home</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'about' %}">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'services' %}">Services</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'status' %}">Status</a>
+                <a class="nav-link" href="{% url 'citizen:status' %}">Status</a>
               </li>
             </ul>
             <!--/search-right-->
@@ -64,12 +44,12 @@
                 <li class="nav-item search-right">
                     {% if session_user %}
                     <!-- /search popup -->
-                    <a href="#logout" class="btn search-btn btn-primary" title="search"><span aria-hidden="true" >{{session_user.full_name}}</span></a>
+                    <a href="#logout" class="btn search-btn btn-primary" title="search"><span aria-hidden="true" >Logout</span></a>
                     <!-- search popup -->
                     <div id="logout" class="pop-overlay">
                         <div class="popup">
-                            <h3 class="title-w3l two mb-4 text-left">Are you sure you want to logout?</h3>
-                            <center><a href="{% url 'logout' %}" class="btn search-btn btn-primary" title="search"><span><i class="fa fa-sign-out"></i>Logout</span></a></center>
+                            <h3 class="two mb-4 text-left">Are you sure you want to logout <span class="title-w31 two">{{session_user.full_name}}</span>?</h3>
+                            <center><a href="{% url 'citizen:logout' %}" class="btn search-btn btn-primary" title="search"><span><i class="fa fa-sign-out"></i>Yes</span></a></center>
                         </div>
                         <a class="close" href="#close">×</a>
                     </div>
@@ -78,8 +58,7 @@
                 </li>
             </ul>
             <!--//search-right-->
-                </div>
-            </nav>
+          </div>
       </div>
     </header>
     <!--//Header-->

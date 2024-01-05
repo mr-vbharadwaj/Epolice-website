@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Police Complaint Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url(../../static/assets/images/police2.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    form {
+      max-width: 600px;
+      background: linear-gradient(to bottom, #818181, #ffffff); /* Gradient background */
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #0c0c0c;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      color: #1f1e1e;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 150px;
+    }
+
+    button {
+      background-color: #00abf0;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #4c75af;
+    }
+  </style>
+</head>
+<body >
+  <div >
+    <form action="{% url 'officer:save_edit' complaint.id %}" method="post" aria-readonly="true">
+      {% csrf_token %}
+      <center>{{msg}}</center>
+      <h2>Police Complaint Form</h2>
+      <label for="citizen_name">Your Name:<input type="text" value="{{complaint.citizen_name}}" id="full_name" name="full_name" readonly></label>
+
+      <label for="aadhaar_number">Aadhaar Number:<input type="text" value={{complaint.citizen_aadhaar}} id="aadhaar_number" name="aadhaar_number" readonly></label>
+
+      <label for="email_id">Email:<input type="text" value="{{complaint.citizen_email}}" id="email" name="email" readonly></label>
+
+      <label for="incidentDate">Incident Date:<input type="text" value="{{complaint.time_of_incident}}" id="date" name="date" readonly></label>
+
+      <label for="complainantSubject">Subject:<input type="text" value="{{complaint.subject}}" id="subject" name="subject" readonly></label>
+
+      <label for="complaintDetails">Complaint Details:<input type="text" value="{{complaint.description}}" id="complaintDetails" name="complaintDetails" readonly></label>
+      
+      <label for="complaintStatus"> Current Status:<input type="text" value="{{complaint.status}}" id="complaintStatus" name="complaintStatus" readonly></label>
+      <label for="complaintStatus"></label>
+      <select name='status' >
+        {% if complaint.status == 'registered' %}
+        <option value="registered" selected>Registered</option>
+        <option value="in progress" >In progress</option>
+        <option value="resolved" >Resolved</option>
+
+        {% elif complaint.status == 'in progress' %}
+        <option value="registered" >Registered</option>
+        <option value="in progress" selected>In progress</option>
+        <option value="resolved" >Resolved</option>
+
+        {% else %}
+        <option value="registered" >Registered</option>
+        <option value="in progress" >In progress</option>
+        <option value="resolved" selected>Resolved</option>
+
+        {% endif %}
+      </select>
+
+      <br><br>
+      <div style="display: flex; justify-content:center">
+        <a href="{% url 'officer:view_complaints' %}"><button type="button">Go back</button></a>
+        &nbsp;&nbsp;
+        <button type="submit">Save</button>
+      </div>
+    </form>
+      
+  </div>
+
+</body>
+</html>
