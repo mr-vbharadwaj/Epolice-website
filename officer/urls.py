@@ -9,4 +9,5 @@ urlpatterns = [
     path('view_complaints/', view_complaints, name='view_complaints'),
     path('complaint_edit/<int:cid>', complaint_edit, name='complaint_edit'),
     path('save_edit/<int:cid>', save_edit, name='save_edit'),
+    path('filter_complaints/', filter_complaints, name='filter_complaints')
 ]

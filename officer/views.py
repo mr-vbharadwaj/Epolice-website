@@ -41,18 +41,29 @@ def officer_login(request):
         except:
             return render(request, 'officer_login.html', {'msg':'You are not registered, please contact admin to register!!'})
 
-@officer_login_required
 def complaint_edit(request, cid):
-    complaints_data = Complaints.objects.get(id = cid)
-    return render(request, 'complaint_edit.html', {'complaint':complaints_data})
+    if 'email' in request.session:
+        complaints_data = Complaints.objects.get(id = cid)
+        return render(request, 'complaint_edit.html', {'complaint':complaints_data})
+    else:
+        return redirect('officer:officer_login')
 
-@officer_login_required
+
 def save_edit(request, cid):
-    complaints_data = Complaints.objects.get(id = cid)
-    complaints_data.status = request.POST['status']
-    complaints_data.save()
-    return render(request, 'complaint_edit.html', {'complaint':complaints_data,'msg':'Complaint was successfully edited'})
+    if 'email' in request.session:
+        complaints_data = Complaints.objects.get(id = cid)
+        complaints_data.status = request.POST['status']
+        complaints_data.save()
+        return render(request, 'complaint_edit.html', {'complaint':complaints_data,'msg':'Complaint was successfully edited'})
+    else:
+        return redirect('officer:officer_login')
 
 def officer_logout(request):
     del request.session['email']
     return redirect('officer:officer_home')
+
+def filter_complaints(request):
+    if request.method == 'GET':
+        filter_status = request.GET['status']
+        new_complaints = Complaints.objects.filter(status = filter_status)
+        return render(request, 'filter_complaints.html', {'complaints':new_complaints})

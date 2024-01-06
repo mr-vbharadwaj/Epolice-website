@@ -20,7 +20,6 @@ from Epolice_django.views import *
 
 app_name = 'citizen'
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('',home,name='home'),
     path('complain/',complaint,name='complaint'),
     path('login/',citizen_login,name='login'),
