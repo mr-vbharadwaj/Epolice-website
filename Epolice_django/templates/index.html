@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Karnataka Police</title>
+    <!--/google-fonts -->
+    <link
+      href="//fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap"
+      rel="stylesheet" />
+    <!--//google-fonts -->
+    <!--/Template-CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style-starter.css' %}" />
+    <!--//Template-CSS -->
+  </head>
+  <body>
+       {% include 'header.html' %}
+  <!--/Banner-Start-->
+    <!-- main-slider -->
+    <section class="w3l-main-slider banner-slider " id="home">
+        <center>{{msg}}</center>
+        <div class="owl-one owl-carousel owl-theme">
+                <div class="slider-info banner-view banner-top1">
+                    <div class="container">
+                        <div class="w3banner-grids">
+                            <div class="banner-info header-hero-19">
+                                <p class="w3hny-tag"> crime stoppers</p>
+                                <h3 class="title-hero-19">How can we help?</h3>
+                                <a href="{% url 'citizen:complaint' %}" class="btn btn-style btn-primary mt-4">File a COMPLAINT </a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+    </section>
+    
+    <!-- //move top -->
+    <!--//footer-9 -->
+    <!-- Template JavaScript -->
+    <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/theme-change.js' %}"></script>
+</body> 
+</html>

@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Karnataka Police</title>
+    <!-- Google Fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style-starter.css' %}">
+    <!-- Bootstrap CSS (Make sure Bootstrap CSS is included) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Add this style block to your HTML or link to an external CSS file */
+        table {
+            border: 1px solid white;
+            width: 100%;
+            color: white;
+        }
+
+        th, td {
+            border: 1px solid white; /* Adjust the border color and style as needed */
+            padding: 8px; /* Add padding for better aesthetics */
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+{% include 'officer_header.html' %}
+<!-- Banner Start -->
+<!-- Main Slider -->
+<center>
+    <section class="w3l-main-slider banner-slider" id="home">
+        <center>{{msg}}</center>
+        <div class="owl-one owl-carousel owl-theme">
+            <div class="slider-info banner-view banner-top1">
+                <div class="container">
+                    <br>
+                    <div class="w3banner-grids">
+                        <!-- Filter button -->
+                        <div style="text-align: right; justify-content: space-between;">
+                          &nbsp;
+                          <form action="{% url 'officer:filter_complaints' %}" method="GET" id="filterForm">
+                            <div class="dropdown" style="display: inline-block;">
+                              <select class="form-control" id="statusDropdown" name="status">
+                                <option value="registered">Registered</option>
+                                <option value="in progress">In progress</option>
+                                <option value="resolved">Resolved</option>
+                                <!-- Add more options as needed -->
+                              </select>
+                              <br>
+                              <button class="btn search-btn btn-primary " type="submit">
+                                Filter
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                        <div style="float: right; width: 70%;">
+                            {% if complaints %}
+                            <table class="table table-head-fixed" style="color:white ">
+                                <thead>
+                                <tr>
+                                    <th>Complaint ID</th>
+                                    <th>Complainer Name</th>
+                                    <th>Date</th>
+                                    <th>Subject</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>View</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in complaints %}
+                                <tr>
+                                  <td>{{i.id}}</td>
+                                  <td>{{i.citizen_name}}</td>
+                                  <td>{{i.time_of_complaint}}</td>
+                                  <td>{{i.subject}}</td>
+                                  <td>{{i.description}} </td>
+                                  <td>{{i.status}}</td>
+                                  <td><a href="{% url 'officer:complaint_edit' i.id %}"><button><i class="fas fa-edit" alt="view form"></i></button></a></td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                                {% else %}
+                                <p style="color: white;">There are no complaints filed from your account
+                                    <br>
+                                    Go to the home page to submit your complaint
+                                </p>
+                                {% endif %}
+                            </table>
+                            <a href="{% url 'officer:officer_home' %}" class="btn search-btn btn-primary" style="position: relative; max-width: 80px;"><span aria-hidden="true">Go back</span></a>
+                            <br>
+                          </div>
+                          <br>
+                      </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+</center>
+<!-- Move top -->
+<!-- Footer -->
+<!-- Template JavaScript -->
+<script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'assets/js/theme-change.js' %}"></script>
+<!-- Bootstrap JS (Make sure Bootstrap JS and Popper.js are included) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+</body>
+</html>

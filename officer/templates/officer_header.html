@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Karnataka Police</title>
+    <!--/google-fonts -->
+    <link
+      href="//fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap"
+      rel="stylesheet" />
+    <!--//google-fonts -->
+    <!--/Template-CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style-starter.css' %}" />
+    <!--//Template-CSS -->
+  </head>
+  <body style="background-image: url(../static/assets/images/police2.png);">
+    {% block content %}
+    <!--/Header-->
+    <header id="site-header" class="fixed-top" style="overflow: hidden">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light stroke py-lg-0">
+          <h1>
+            <a class="navbar-brand" href="{% url 'officer:officer_home' %}">
+              <span class="w3yellow">Karnataka</span> Police
+            </a>
+          </h1>
+          <div class="collapse navbar-collapse"  id="navbarScroll">
+            <ul class="navbar-nav mx-lg-auto my-2 my-lg-0 navbar-nav-scroll">
+              
+            </ul>
+            <!--/search-right-->
+            <ul class="header-search me-lg-4">
+                <li class="nav-item search-right">
+                    {% if session_user %}
+                    <!-- /search popup -->
+                    <a href="#logout" class="btn search-btn btn-primary" title="search"><span aria-hidden="true" >Logout</span></a>
+                    <!-- search popup -->
+                    <div id="logout" class="pop-overlay">
+                        <div class="popup">
+                            <h3 class="two mb-4 text-left">Are you sure you want to logout <span class="title-w31 two">{{session_user.officer_name}}</span>?</h3>
+                            <center><a href="{% url 'officer:officer_logout' %}" class="btn search-btn btn-primary" title="search"><span><i class="fa fa-sign-out"></i>Yes</span></a></center>
+                        </div>
+                        <a class="close" href="#close">×</a>
+                    </div>
+                    <!-- /search popup -->
+                    {% endif %}
+                </li>
+            </ul>
+            <!--//search-right-->
+          </div>
+      </div>
+    </header>
+    <!--//Header-->
+    <!-- Template JavaScript -->
+    <script src="{% static 'assets/js/theme-change.js' %}"></script>
+    {% endblock %}
+
